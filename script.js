@@ -1,100 +1,68 @@
 // DARK / LIGHT MODE
 
-const themeBtn =
-    document.getElementById("themeBtn");
+const themeBtn = document.getElementById("themeBtn");
 
-themeBtn.addEventListener(
-    "click",
-    function () {
+themeBtn.addEventListener("click", function () {
 
-        document.body.classList.toggle("light");
+    document.body.classList.toggle("light");
 
-        if (
-            document.body.classList.contains("light")
-        ) {
-
-            themeBtn.textContent = "☀️";
-
-        } else {
-
-            themeBtn.textContent = "🌙";
-
-        }
-
+    if (document.body.classList.contains("light")) {
+        themeBtn.textContent = "☀️";
+    } else {
+        themeBtn.textContent = "🌙";
     }
-);
+
+});
 
 
 // CONTACT FORM
 
-const contactForm =
-    document.getElementById("contactForm");
+const contactForm = document.getElementById("contactForm");
 
-contactForm.addEventListener(
-    "submit",
-    function (event) {
+contactForm.addEventListener("submit", function (event) {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        alert(
-            "Thank you! Your message has been submitted."
-        );
+    alert(
+        "Thank you for contacting Rishi Velani!"
+    );
 
-        contactForm.reset();
+    contactForm.reset();
 
-    }
-);
+});
 
 
 // ACTIVE NAVIGATION
 
-const sections =
-    document.querySelectorAll("section");
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
 
-const navLinks =
-    document.querySelectorAll(".nav-links a");
+window.addEventListener("scroll", function () {
 
-window.addEventListener(
-    "scroll",
-    function () {
+    let current = "";
 
-        let current = "";
+    sections.forEach(function (section) {
 
-        sections.forEach(
-            function (section) {
+        const sectionTop = section.offsetTop - 150;
 
-                const sectionTop =
-                    section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
 
-                if (
-                    window.scrollY >= sectionTop
-                ) {
+    });
 
-                    current =
-                        section.getAttribute("id");
+    navLinks.forEach(function (link) {
 
-                }
+        link.style.color = "";
 
-            }
-        );
+        if (
+            link.getAttribute("href") === "#" + current
+        ) {
 
-        navLinks.forEach(
-            function (link) {
+            link.style.color = "#38bdf8";
 
-                link.style.color = "";
+        }
 
-                if (
-                    link.getAttribute("href")
-                    === "#" + current
-                ) {
+    });
 
-                    link.style.color =
-                        "#38bdf8";
-
-                }
-
-            }
-        );
-
-    }
-);
+});
